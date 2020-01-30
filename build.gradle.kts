@@ -45,6 +45,19 @@ subprojects {
 		val testImplementation by configurations
 		testImplementation("org.junit.jupiter:junit-jupiter")
 	}
+
+	extra["execProfile"] = {
+		val buildProfile: String by project
+		val profileFileRelativePath = "profiles/profile-$buildProfile.gradle.kts"
+		val profileFileAbsolutePath: String = file(".")
+			.absoluteFile.resolve(profileFileRelativePath).absolutePath
+		profileFileAbsolutePath
+	}
+	extra.set("getConfig", {
+		val configFileRelativePath = "profiles/common.gradle.kts"
+		file(".").absoluteFile.resolve(configFileRelativePath).absolutePath
+	})
+
 }
 
 dependencies { 
@@ -52,3 +65,16 @@ dependencies {
 		archives(it)
 	}
 }
+
+
+
+/*
+ext {
+	set("execProfile", {
+		val buildProfile: String by project
+		val profileFileRelativePath = "profiles/profile-$buildProfile.gradle.kts"
+		val profileFileAbsolutePath: String = file(".")
+			.absoluteFile.resolve(profileFileRelativePath).absolutePath
+		profileFileAbsolutePath
+	})
+}*/
