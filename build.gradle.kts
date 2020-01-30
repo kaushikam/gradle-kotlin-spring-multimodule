@@ -57,8 +57,8 @@ subprojects {
 	}
 
 	dependencies {
-		val testImplementation by configurations
-		testImplementation("org.junit.jupiter:junit-jupiter")
+		val implementation by configurations
+		implementation("com.google.guava:guava:27.1-jre")
 	}
 
 	extra["execProfile"] = {
